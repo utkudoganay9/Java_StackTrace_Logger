@@ -1,0 +1,46 @@
+package org.example.entity;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.example.helper.ServerType;
+
+import java.time.LocalDateTime;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Entity
+@Table(name = "exception", schema = "log")
+public class ExceptionLog {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+
+    @Column(name = "LogDate", nullable = false)
+    private LocalDateTime logDate;
+
+    @Column(name = "IpAddress", nullable = false)
+    private String ipAddress;
+
+    @Column(name = "UserId", nullable = false)
+    private String userId;
+
+    @Column(name = "RequestId")
+    private Integer requestId;
+
+    @Column(name = "ErrorCode", nullable = false)
+    private Integer errorCode;
+
+    @Column(name = "StackTrace")
+    private String stackTrace;
+
+    @Column(name = "Exception")
+    private String exception;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "ServerType", nullable = false)
+    private ServerType serverType;
+}
